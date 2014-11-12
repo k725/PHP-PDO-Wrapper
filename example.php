@@ -9,24 +9,24 @@
 
 	$pdo = new PDOWrapper($hostname, $database, $charset, $username, $password);
 
-	$sql  = 'SELECT * FROM `TestTable` WHERE foo = ? AND bar = ?';
-	$sql2 = 'UPDATE `TestTable` SET foo = ? WHERE bar = ?';
+	$sql  = 'SELECT * FROM `TestTable` WHERE foo = :foo AND bar = :bar';
+	$sql2 = 'UPDATE `TestTable` SET foo = :foo WHERE bar = :bar';
 
 	// Result is multidimensional array. (Associative array)
 	$result = $pdo->getData($sql, array(
-		'foo' => PDO::PARAM_STR, // foo
-		12345 => PDO::PARAM_INT  // bar
+		':foo' => array('foo', PDO::PARAM_STR), // foo
+		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
 	// Result is array. (Associative array)
 	$result2 = $pdo->getTopData($sql, array(
-		'foo' => PDO::PARAM_STR, // foo
-		12345 => PDO::PARAM_INT  // bar
+		':foo' => array('foo', PDO::PARAM_STR), // foo
+		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
 	$pdo->runSql($sql2, array(
-		'foo' => PDO::PARAM_STR, // foo
-		12345 => PDO::PARAM_INT  // bar
+		':foo' => array('foo', PDO::PARAM_STR), // foo
+		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
 	$this->classDataBase->closeStmt();

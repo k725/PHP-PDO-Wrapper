@@ -21,28 +21,28 @@ Initialize
 
 Run (Required results)
 
-	$sql  = 'SELECT * FROM `TestTable` WHERE foo = ? AND bar = ?';
+	$sql  = 'SELECT * FROM `TestTable` WHERE foo = :foo AND bar = :bar';
 
 	// Result is multidimensional array. (Associative array)
 	$result = $pdo->getData($sql, array(
-		'foo' => PDO::PARAM_STR, // foo
-		12345 => PDO::PARAM_INT  // bar
+		':foo' => array('foo', PDO::PARAM_STR), // foo
+		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
 	// Result is array. (Associative array)
 	$result2 = $pdo->getTopData($sql, array(
-		'foo' => PDO::PARAM_STR, // foo
-		12345 => PDO::PARAM_INT  // bar
+		':foo' => array('foo', PDO::PARAM_STR), // foo
+		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
 	var_dump($result, $result2); // Result!!
 
 Run (Not required results)
 
-	$sql = 'UPDATE `TestTable` SET foo = ? WHERE bar = ?';
+	$sql2 = 'UPDATE `TestTable` SET foo = :foo WHERE bar = :bar';
 	$pdo->runSql($sql, array(
-		'foo' => PDO::PARAM_STR, // foo
-		12345 => PDO::PARAM_INT  // bar
+		':foo' => array('foo', PDO::PARAM_STR), // foo
+		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
 Finalize

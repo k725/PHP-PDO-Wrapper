@@ -3,8 +3,8 @@
 	 * PHP PDO Wrapper Class.
 	 *
 	 * @author		k725
-	 * @since		2014/11/10
-	 * @version		0.1
+	 * @since		2014/11/12
+	 * @version		0.2
 	 * @copyright	Copyright (c) 2014, k725.
 	 */
 	class PDOWrapper
@@ -94,11 +94,8 @@
 				}
 				else
 				{
-					$i = 0;
-
-					foreach ($params as $value => $type) {
-						$i++;
-						$this->stmt->bindValue($i, $value, $type);
+					foreach ($params as $value => $key) {
+						$this->stmt->bindValue($value, $key[0], $key[1]);
 					}
 
 					$result = $this->stmt->execute();
