@@ -44,7 +44,8 @@
 		 * @access	public
 		 * @return	void
 		 */
-		public function __destruct() {
+		public function __destruct()
+		{
 			$this->closeDataBase();
 		}
 
