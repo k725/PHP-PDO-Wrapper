@@ -17,18 +17,22 @@
 		':foo' => array('foo', PDO::PARAM_STR), // foo
 		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
+	
+	$pdo->closeStmt();
 
 	// Result is array. (Associative array)
 	$result2 = $pdo->getTopData($sql, array(
 		':foo' => array('foo', PDO::PARAM_STR), // foo
 		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
+	
+	$pdo->closeStmt();
 
 	$pdo->runSql($sql2, array(
 		':foo' => array('foo', PDO::PARAM_STR), // foo
 		':bar' => array(12345, PDO::PARAM_INT)  // bar
 	));
 
-	$this->classDataBase->closeStmt();
+	$pdo->closeStmt();
 
 	var_dump($result, $result2);
